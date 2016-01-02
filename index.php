@@ -65,7 +65,13 @@
 	// предварительная обработка
 	while ($row3 = $dbh->fetch_array($result3)) 
 	{
-		echo"<pre>";var_dump( get_shares_count_by_name($dbh,$row3['name']));echo"</pre";
+		$count = get_shares_count_by_name($dbh,$row3['name']);
+		if ($count != 1) 
+		{
+			echo "Ошибка! ".$row3['id']." ".$row3['name']."<br/>";
+		}
+		echo"<pre>";var_dump($count);echo"</pre";
+		
 	}
 	
 	?>
