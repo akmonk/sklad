@@ -1,6 +1,12 @@
 <?php
 	require_once "database.php";
 	
+	function get_shares_count_by_name($dbh, $name)
+	{
+		$result = $dbh->query("SELECT * FROM `shares` WHERE `shares_id`=0 AND `name` like '{$name}' ORDER by name");
+		return $dbh->fetch_array($result)[0];
+	}
+	
 	function str_replace_assoc(array $replace, $subject) 
 	{ 
 		return str_replace(array_keys($replace), array_values($replace), $subject);    
@@ -12,7 +18,7 @@
 	
 	$query = "SELECT * FROM {$table} WHERE 1 ORDER by name";
 		// Выполняем запрос к БД
-	$result = $dbh->query($query);
+	//$result = $dbh->query($query);
 	
 	// предварительная обработка
 	while ($row = $dbh->fetch_array($result)) 
@@ -52,5 +58,14 @@
 		echo $new_name."<br/>";
 	}
 	
+	$query3 = "SELECT * FROM {$table} WHERE `conversations_id`=0 ORDER by name";
+		// Выполняем запрос к БД
+	$result3 = $dbh->query($query3);
+	
+	// предварительная обработка
+	while ($row3 = $dbh->fetch_array($result3)) 
+	{
+		echo get_shares_count_by_name($dbh,$row3['name'])."<br/>";
+	}
 	
 	?>
