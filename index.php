@@ -8,7 +8,7 @@
 	
 	$dbh=new CDataBase("skladchik", "localhost", "ypbase", "golosneba"); 
 
-	$table = 'prepare_csv';
+	$table = 'shares';
 	
 	$query = "SELECT * FROM {$table} WHERE 1 ORDER by name";
 		// Выполняем запрос к БД
