@@ -37,8 +37,8 @@
 		);
 		//$new_name = str_replace_assoc($replace,$row['name']);
 		$row['name'] = iconv('UTF-8','cp1251',$row['name']);
-		$new_name = preg_replace('/([.+{},®!-]+)/', '_', $row['name']); 		
-		$new_name = preg_replace('/(["?:^~|@¹$–=+*&%,;<>()—«»#\/\']+)/', '', $new_name);
+		//$new_name = preg_replace('/([.+{},®!-]+)/', '_', $row['name']); 		
+		$new_name = preg_replace('/([.+{},®!-"?:^~|@¹$–=+*&%,;<>()—«»#\/\']+)/', '_', $new_name);
 		$new_name = preg_replace('/\s\s+/', ' ', $new_name);		
 		$new_name = preg_replace('/\ /', '_', $new_name);
 		$new_name = preg_replace('/__+/', '_', $new_name);
