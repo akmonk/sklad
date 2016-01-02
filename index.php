@@ -26,7 +26,7 @@
 	{
 		$result = $dbh->query("SELECT `id` FROM `shares` WHERE `shares_id`=0 AND `name` like '{$name}' ORDER by name");
 		$id_arr = $dbh->fetch_array($result);
-		return $id_arr['id'];
+		return $id_arr['shares_id'];
 	}
 	
 	function str_replace_assoc(array $replace, $subject) 
@@ -96,7 +96,7 @@
 		else
 		{
 			$shares_id = get_shares_by_name($dbh,$row3['name']);
-			$sql = "UPDATE `shares` SET `shares_id` = \"{$shares_id}\" WHERE `id`={$row['id']};";
+			$sql = "UPDATE `shares` SET `shares_id` = \"{$shares_id}\" WHERE `id`={$row3['id']};";
 			echo $sql."<br/>";
 			$result = $dbh->query($sql);
 		}
