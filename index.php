@@ -22,9 +22,9 @@
 		}
 	}
 	
-	function get_shares_by_name($dbh, $name)
+	function get_conversations_by_name($dbh, $name)
 	{
-		$result = $dbh->query("SELECT `id` FROM `shares` WHERE `shares_id`=0 AND `name` like '{$name}' ORDER by name");
+		$result = $dbh->query("SELECT `id` FROM `shares` WHERE `conversations_id`=0 AND `name` like '{$name}' ORDER by name");
 		$id_arr = $dbh->fetch_array($result);
 		return $id_arr['shares_id'];
 	}
@@ -40,7 +40,7 @@
 	
 	$query = "SELECT * FROM {$table} WHERE 1 ORDER by name";
 		// Выполняем запрос к БД
-	//$result = $dbh->query($query);
+	$result = $dbh->query($query);
 	
 	// предварительная обработка
 	while ($row = $dbh->fetch_array($result)) 
@@ -95,7 +95,7 @@
 		}
 		else
 		{
-			$shares_id = get_shares_by_name($dbh,$row3['name']);
+			$shares_id = get_conversations_by_name($dbh,$row3['name']);
 			$sql = "UPDATE `shares` SET `shares_id` = \"{$shares_id}\" WHERE `id`={$row3['id']};";
 			echo $sql."<br/>";
 			$result = $dbh->query($sql);
