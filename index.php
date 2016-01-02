@@ -37,7 +37,7 @@
 		);
 		//$new_name = str_replace_assoc($replace,$row['name']);
 		$row['name'] = iconv('UTF-8','cp1251',$row['name']); 		
-		$new_name = preg_replace('/([?:^~|@¹$–=+*&%,;<>()—«»#\/]+)/', '', $row['name']);
+		$new_name = preg_replace('/(["?:^~|@¹$–=+*&%,;<>()—«»#\/]+)/', '', $row['name']);
 		$new_name = preg_replace('/\s\s+/', '_', $new_name);
 		$new_name = preg_replace('/\_\_+/', '_', $new_name);
 		$new_name = rtrim ($new_name,"...");
