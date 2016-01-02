@@ -29,6 +29,16 @@
 		return $id_arr['conversations_id'];
 	}
 	
+	function echo_foldernames($dbh)
+	{
+		$result = $dbh->query("SELECT * FROM `shares` WHERE `shares_id` !=0 AND `conversations_id` !=0 ORDER by name");
+		
+		while ($row = $dbh->fetch_array($result)) 
+		{			
+			echo $row['conversations_id']."_".$row['shares_id']."_".trim($row['name'],"_")."<br/>";
+		}
+	}
+	
 	function str_replace_assoc(array $replace, $subject) 
 	{ 
 		return str_replace(array_keys($replace), array_values($replace), $subject);    
@@ -71,10 +81,10 @@
 		$new_name = preg_replace('/\ /', '_', $new_name);
 		$new_name = preg_replace('/__+/', '_', $new_name);
 		$new_name = rtrim ($new_name,"...");
-		echo "<pre>";var_dump($row);"</pre>";
+		//echo "<pre>";var_dump($row);"</pre>";
 		$new_name = iconv('cp1251','UTF-8',$new_name);
 		$sql2 = "UPDATE `shares` SET `name` = \"{$new_name}\" WHERE `id`={$row['id']};";
-		echo $sql2."<br/>";
+		//echo $sql2."<br/>";
 		$result2 = $dbh->query($sql2);
 		
 		echo $new_name."<br/>";
@@ -90,18 +100,19 @@
 		$count = get_shares_count_by_name($dbh,$row3['name']);
 		if ($count == "-1") 
 		{
-			echo "Ошибка! ".$row3['id']." ".$row3['name'];var_dump($count);echo"<br/>" ;
+			//echo "Ошибка! ".$row3['id']." ".$row3['name'];var_dump($count);echo"<br/>" ;
 			$i++;
 		}
 		else
 		{
 			$conversations_id = get_conversations_by_name($dbh,$row3['name']);
 			$sql = "UPDATE `shares` SET `conversations_id` = \"{$conversations_id}\" WHERE `id`={$row3['id']};";
-			echo $sql."<br/>";
+			//echo $sql."<br/>";
 			$result = $dbh->query($sql);
 		}
 		//echo"<pre>";var_dump($count);echo"</pre";
 		
 	}
-	echo "all: ".$i;
+	echo_foldernames($dbh);
+	echo "not shown: ".$i;
 	?>
