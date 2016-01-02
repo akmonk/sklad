@@ -68,7 +68,7 @@
 		$count = get_shares_count_by_name($dbh,$row3['name']);
 		if ($count[0] != 1) 
 		{
-			echo "Ошибка! ".$row3['id']." ".$row3['name']."<br/>";
+			echo "Ошибка! ".$row3['id']." ".$row3['name'];var_dump($count);echo " ".$count[0]." ";echo"<br/>" ;
 		}
 		//echo"<pre>";var_dump($count);echo"</pre";
 		
