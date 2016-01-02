@@ -35,7 +35,8 @@
 			'(' => '', 
 			')' => '' 
 		);
-		$new_name = str_replace_assoc($replace,$row['name']); 
+		//$new_name = str_replace_assoc($replace,$row['name']); 
+		$new_name = preg_replace('/([?:^~|@¹$–=+*&%.,;<>()_—«»#\/]+)/', '', $row['name']);
 		$new_name = rtrim ($new_name,"...");
 		echo $new_name."<br/>";
 	}
