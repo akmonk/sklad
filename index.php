@@ -97,7 +97,7 @@
 		{
 			$shares_id = get_shares_by_name($dbh,$row3['name']);
 			$sql = "UPDATE `shares` SET `shares_id` = \"{$shares_id}\" WHERE `id`={$row['id']};";
-			$result3 = $dbh->query($query3);
+			$result = $dbh->query($sql);
 		}
 		//echo"<pre>";var_dump($count);echo"</pre";
 		
