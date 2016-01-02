@@ -69,7 +69,7 @@
 		if ($count != "1") 
 		{
 			echo "Ошибка! ".$row3['id']." ".$row3['name'];var_dump($count);echo"<br/>" ;
-			$i++
+			$i++;
 		}
 		//echo"<pre>";var_dump($count);echo"</pre";
 		echo "all: ".$i;
