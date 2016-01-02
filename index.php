@@ -87,7 +87,7 @@
 		//echo $sql2."<br/>";
 		$result2 = $dbh->query($sql2);
 		
-		echo $new_name."<br/>";
+		//echo $new_name."<br/>";
 	}
 	
 	$query3 = "SELECT * FROM {$table} WHERE `conversations_id`=0 ORDER by name";
