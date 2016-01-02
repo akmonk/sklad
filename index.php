@@ -4,7 +4,7 @@
 	function get_shares_count_by_name($dbh, $name)
 	{
 		$result = $dbh->query("SELECT * FROM `shares` WHERE `shares_id`=0 AND `name` like '{$name}' ORDER by name");
-		return $dbh->fetch_array($result)['0'];
+		return $dbh->fetch_array($result);
 	}
 	
 	function str_replace_assoc(array $replace, $subject) 
