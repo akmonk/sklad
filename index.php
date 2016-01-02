@@ -24,9 +24,9 @@
 	
 	function get_conversations_by_name($dbh, $name)
 	{
-		$result = $dbh->query("SELECT * FROM `shares` WHERE `conversations_id`=0 AND `name` like '{$name}' ORDER by name");
+		$result = $dbh->query("SELECT * FROM `shares` WHERE `shares_id`=0 AND `name` like '{$name}' ORDER by name");
 		$id_arr = $dbh->fetch_array($result);
-		return $id_arr['shares_id'];
+		return $id_arr['conversations_id'];
 	}
 	
 	function str_replace_assoc(array $replace, $subject) 
@@ -95,8 +95,8 @@
 		}
 		else
 		{
-			$shares_id = get_conversations_by_name($dbh,$row3['name']);
-			$sql = "UPDATE `shares` SET `shares_id` = \"{$shares_id}\" WHERE `id`={$row3['id']};";
+			$conversations_id = get_conversations_by_name($dbh,$row3['name']);
+			$sql = "UPDATE `shares` SET `conversations_id` = \"{$conversations_id}\" WHERE `id`={$row3['id']};";
 			echo $sql."<br/>";
 			$result = $dbh->query($sql);
 		}
