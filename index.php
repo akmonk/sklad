@@ -7,6 +7,8 @@
 		$count = $dbh->num_rows($result);
 		if ($count==1)
 		{
+			//$id_arr = $dbh->fetch_array($result);
+			//return $id_arr['id'];
 			return 1;
 		}
 		elseif($count>1)
@@ -18,6 +20,13 @@
 		{
 			return -1;
 		}
+	}
+	
+	function get_shares_by_name($dbh, $name)
+	{
+		$result = $dbh->query("SELECT `id` FROM `shares` WHERE `shares_id`=0 AND `name` like '{$name}' ORDER by name");
+		$id_arr = $dbh->fetch_array($result);
+		return $id_arr['id'];
 	}
 	
 	function str_replace_assoc(array $replace, $subject) 
@@ -79,10 +88,16 @@
 	while ($row3 = $dbh->fetch_array($result3)) 
 	{
 		$count = get_shares_count_by_name($dbh,$row3['name']);
-		if ($count != "1") 
+		if ($count == "-1") 
 		{
 			echo "Ошибка! ".$row3['id']." ".$row3['name'];var_dump($count);echo"<br/>" ;
 			$i++;
+		}
+		else
+		{
+			$shares_id = get_shares_by_name($dbh,$row3['name']);
+			$sql = "UPDATE `shares` SET `shares_id` = \"{$shares_id}\" WHERE `id`={$row['id']};";
+			$result3 = $dbh->query($query3);
 		}
 		//echo"<pre>";var_dump($count);echo"</pre";
 		
