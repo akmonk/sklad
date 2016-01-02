@@ -3,8 +3,8 @@
 	
 	function get_shares_count_by_name($dbh, $name)
 	{
-		$result = $dbh->query("SELECT count(*) FROM `shares` WHERE `shares_id`=0 AND `name` like '{$name}' ORDER by name");
-		return $dbh->fetch_array($result);
+		$result = $dbh->query("SELECT `id` FROM `shares` WHERE `shares_id`=0 AND `name` like '{$name}' ORDER by name");
+		return $dbh->num_rows($result);
 	}
 	
 	function str_replace_assoc(array $replace, $subject) 
@@ -66,9 +66,9 @@
 	while ($row3 = $dbh->fetch_array($result3)) 
 	{
 		$count = get_shares_count_by_name($dbh,$row3['name']);
-		if ($count[0] != "1") 
+		if ($count != "1") 
 		{
-			echo "Ошибка! ".$row3['id']." ".$row3['name'];var_dump($count);echo " -->".$count[0]."<-- ";echo"<br/>" ;
+			echo "Ошибка! ".$row3['id']." ".$row3['name'];var_dump($count);echo"<br/>" ;
 		}
 		//echo"<pre>";var_dump($count);echo"</pre";
 		
