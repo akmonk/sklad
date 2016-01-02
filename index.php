@@ -10,7 +10,7 @@
 
 	$table = 'prepare_csv';
 	
-	$query = "SELECT * FROM {$table} WHERE 1";
+	$query = "SELECT * FROM {$table} WHERE 1 ORDER by name";
 		// Выполняем запрос к БД
 	$result = $dbh->query($query);
 	
