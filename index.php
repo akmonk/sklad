@@ -24,7 +24,7 @@
 	
 	function get_conversations_by_name($dbh, $name)
 	{
-		$result = $dbh->query("SELECT `id` FROM `shares` WHERE `conversations_id`=0 AND `name` like '{$name}' ORDER by name");
+		$result = $dbh->query("SELECT * FROM `shares` WHERE `conversations_id`=0 AND `name` like '{$name}' ORDER by name");
 		$id_arr = $dbh->fetch_array($result);
 		return $id_arr['shares_id'];
 	}
