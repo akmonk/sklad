@@ -4,7 +4,20 @@
 	function get_shares_count_by_name($dbh, $name)
 	{
 		$result = $dbh->query("SELECT `id` FROM `shares` WHERE `shares_id`=0 AND `name` like '{$name}' ORDER by name");
-		return $dbh->num_rows($result);
+		$count = $dbh->num_rows($result);
+		if ($count==1)
+		{
+			return 1;
+		}
+		elseif($count>1)
+		{
+			echo "Больше 1, {$name} <br/>";
+			return -1;
+		}
+		else
+		{
+			return -1;
+		}
 	}
 	
 	function str_replace_assoc(array $replace, $subject) 
@@ -72,7 +85,7 @@
 			$i++;
 		}
 		//echo"<pre>";var_dump($count);echo"</pre";
-		echo "all: ".$i;
+		
 	}
-	
+	echo "all: ".$i;
 	?>
