@@ -9,8 +9,18 @@
 		// Выполняем запрос к БД
 	$result = $dbh->query($query);
 	
+	// предварительная обработка
 	while ($row = $dbh->fetch_array($result)) 
 	{
-		echo $row['name']. "<br/>";
+		$replace = array( 
+			'"' => '', 
+			'(' => '', 
+			')' => '' 
+		);
+		$new_name = str_replace_assoc($replace,$row['name'); 
+		$new_name = rtrim ($new_name,"...");
+		echo $new_name."<br/>";
 	}
+	
+	
 	?>
