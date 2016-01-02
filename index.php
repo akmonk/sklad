@@ -43,6 +43,7 @@
 		$new_name = preg_replace('/\ /', '_', $new_name);
 		$new_name = preg_replace('/__+/', '_', $new_name);
 		$new_name = rtrim ($new_name,"...");
+		echo "<pre>".$row['id']."</pre>";
 		$sql2 = "UPDATE `shares` SET `name` = \"{$new_name}\" WHERE `id`={$row['id']};";
 		echo $sql2."<br/>";
 		$result2 = $dbh->query($sql2);
