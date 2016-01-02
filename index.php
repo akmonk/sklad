@@ -41,7 +41,7 @@
 		$new_name = preg_replace('/\s\s+/', '_', $new_name);
 		$new_name = preg_replace('/__+/', '_', $new_name);
 		$new_name = rtrim ($new_name,"...");
-		$new_name = iconv('cp1251','UTF-8',$new_name);
+		//$new_name = iconv('cp1251','UTF-8',$new_name);
 		echo $new_name."<br/>";
 	}
 	
