@@ -44,6 +44,7 @@
 		$new_name = preg_replace('/__+/', '_', $new_name);
 		$new_name = rtrim ($new_name,"...");
 		$sql2 = "UPDATE `shares` SET `name` = \"{$new_name}\" WHERE `id`={$row['id']};";
+		echo $sql2."<br/>";
 		$result2 = $dbh->query($sql2);
 		//$new_name = iconv('cp1251','UTF-8',$new_name);
 		echo $new_name."<br/>";
