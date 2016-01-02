@@ -61,7 +61,7 @@
 	$query3 = "SELECT * FROM {$table} WHERE `conversations_id`=0 ORDER by name";
 		// Выполняем запрос к БД
 	$result3 = $dbh->query($query3);
-	
+	$i = 0;
 	// предварительная обработка
 	while ($row3 = $dbh->fetch_array($result3)) 
 	{
@@ -69,9 +69,10 @@
 		if ($count != "1") 
 		{
 			echo "Ошибка! ".$row3['id']." ".$row3['name'];var_dump($count);echo"<br/>" ;
+			$i++
 		}
 		//echo"<pre>";var_dump($count);echo"</pre";
-		
+		echo "all: ".$i;
 	}
 	
 	?>
